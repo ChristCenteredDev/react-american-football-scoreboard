@@ -10,8 +10,12 @@ class App extends React.Component {
     awayScore: 0
   }
   
-  setScoreFn = (team, points) => {
-    this.setState({ team: team+=points });
+  setHomeScoreFn = (points) => {
+    this.setState({ homeScore: this.state.homeScore+=points });
+  }
+
+  setAwayScoreFn = (points) => {
+    this.setState({ awayScore: this.state.awayScore+=points });
   }
 
   render() {
@@ -24,12 +28,12 @@ class App extends React.Component {
 
               {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
 
-              <div className="home__score">{this.homeScore}</div>
+              <div className="home__score">{this.state.homeScore}</div>
             </div>
             <div className="timer">00:03</div>
             <div className="away">
               <h2 className="away__name">Tigers</h2>
-              <div className="away__score">{this.awayScore}</div>
+              <div className="away__score">{this.state.awayScore}</div>
             </div>
           </div>
           <BottomRow />
@@ -37,12 +41,12 @@ class App extends React.Component {
         <section className="buttons">
           <div className="homeButtons">
             {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-            <button onClick={ this.setScoreFn(this.homeScore, 7) } className="homeButtons__touchdown">Home Touchdown</button>
-            <button onClick={ this.setScoreFn(this.homeScore, 3) } className="homeButtons__fieldGoal">Home Field Goal</button>
+            <button onClick={ () => this.setHomeScoreFn(7) } className="homeButtons__touchdown">Home Touchdown</button>
+            <button onClick={ () => this.setHomeScoreFn(3) } className="homeButtons__fieldGoal">Home Field Goal</button>
           </div>
           <div className="awayButtons">
-            <button onClick={ this.setScoreFn(this.awayScore, 7) } className="awayButtons__touchdown">Away Touchdown</button>
-            <button onClick={ this.setScoreFn(this.awayScore, 3) } className="awayButtons__fieldGoal">Away Field Goal</button>
+            <button onClick={ () => this.setAwayScoreFn(7) }  className="awayButtons__touchdown">Away Touchdown</button>
+            <button onClick={ () => this.setAwayScoreFn(3) } className="awayButtons__fieldGoal">Away Field Goal</button>
           </div>
         </section>
       </div>
